@@ -1,0 +1,8 @@
+.settings
+.svn
+node_modules
+doc
+dist
+*.swp
+*.swo
+release
