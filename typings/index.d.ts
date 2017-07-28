@@ -14,6 +14,11 @@ declare module "MxReactWidget/widget/lib/react/react-dnd" {
     import * as reactdnd from "react-dnd";
     export = reactdnd;
 }
+
+declare module "MxReactWidget/widget/lib/react-redux/react-redux" {
+    import * as reactredux from "react-redux";
+    export = reactredux;
+}
 declare module "dojo/text!*" {
     export ="";
 }

@@ -6,16 +6,24 @@ import declare = require("dojo/_base/declare");
 import _WidgetBase = require("mxui/widget/_WidgetBase");
 import _TemplatedMixin = require("dijit/_TemplatedMixin");
 import widgetTemplate = require("dojo/text!MxReactWidget/widget/template/MxReactWidget.html");
+import { Provider } from "MxReactWidget/widget/lib/react-redux/react-redux"
+import { createStore } from "MxReactWidget/widget/lib/redux/redux"
+import reducer from "./reducer/index";
 
 class MxReactWidget {
     public domNode: HTMLDivElement;
     public templateString: string;
-    // private _connect: WidgetConnect; 
+    public email: string;
     constructor() {
         this.templateString = widgetTemplate;
     }
     update(_obj: mendix.lib.MxObject, callback) {
-        ReactDom.render(<App />, this.domNode);
+        var store = createStore(reducer);
+        ReactDom.render(
+            <Provider store={store}>
+                <App />
+            </Provider>
+            , this.domNode);
         callback && callback();
     }
     resize(_box) {
