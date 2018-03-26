@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var clean = require("gulp-clean");
 var ts = require('gulp-typescript');
+var zip = require('gulp-zip');
 
 var tsProject = ts.createProject('tsconfig.json');
 gulp.task('compileTs', function () {
@@ -32,6 +33,11 @@ gulp.task("clean", function () {
     gulp.src("./release/")
         .pipe(clean({ force: true }));
 });
+gulp.task("zip", function () {
+    gulp.src("./release/**/*")
+        .pipe(zip("MxReactWidget.mpk"))
+        .pipe(gulp.dest("./test/widgets/"))
+})
 
 gulp.task("taskList", ["compileTs", "otherFiles"]);
 gulp.task("watch", function () {

@@ -10,7 +10,6 @@ import widgetTemplate = require("dojo/text!MxReactWidget/widget/template/MxReact
 class MxReactWidget {
     public domNode: HTMLDivElement;
     public templateString: string;
-    // private _connect: WidgetConnect; 
     constructor() {
         this.templateString = widgetTemplate;
     }
