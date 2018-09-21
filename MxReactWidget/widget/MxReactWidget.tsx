@@ -1,6 +1,6 @@
 /// <reference path="../../typings/index.d.ts" />
-import * as ReactDom from "MxReactWidget/widget/lib/react/react-dom";
-import * as React from "MxReactWidget/widget/lib/react/react";
+import * as ReactDom from "react-dom";
+import * as React from "react";
 import { App } from "./App"
 import declare = require("dojo/_base/declare");
 import _WidgetBase = require("mxui/widget/_WidgetBase");
