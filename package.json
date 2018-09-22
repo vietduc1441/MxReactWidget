@@ -20,6 +20,8 @@
   "homepage": "",
   "devDependencies": {
     "@types/dojo": "^1.9.38",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
     "gulp-string-replace": "^1.1.1",
@@ -27,10 +29,10 @@
     "gulp-typescript": "^3.2.4",
     "gulp-zip": "^4.0.0",
     "mendix-client": "^7.13.5",
-    "merge2": "^1.1.0",
+    "merge2": "^1.2.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
-    "run-sequence": "^2.1.0",
+    "run-sequence": "^2.2.1",
     "typescript": "^2.9.2",
     "webpack": "^4.17.2",
     "webpack-stream": "^5.1.1"

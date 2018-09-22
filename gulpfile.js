@@ -2,7 +2,9 @@ var gulp = require("gulp");
 var clean = require("gulp-clean");
 var ts = require('gulp-typescript');
 var zip = require('gulp-zip');
-var webpack = require("webpack-stream")
+var webpack = require("webpack-stream");
+var merge2 = require("merge2");
+var sequence = require('run-sequence');
 
 var tsProject = ts.createProject('tsconfig.json');
 gulp.task('compileTs', function () {
@@ -14,37 +16,39 @@ gulp.task('compileTs', function () {
 });
 
 gulp.task("otherFiles", function () {
-    //all main widget file
-    gulp.src(["MxReactWidget/widget/template/*.html"])
-        .pipe(gulp.dest("release/MxReactWidget/widget/template/"));
-    gulp.src(["MxReactWidget/widget/ui/*.*"])
-        .pipe(gulp.dest("release/MxReactWidget/widget/ui/"));
-    //all config file
-    gulp.src(["./*.xml"])
-        .pipe(gulp.dest("release/"));
-    gulp.src(["MxReactWidget/*.xml"])
-        .pipe(gulp.dest("release/MxReactWidget/"));
-    gulp.src(["MxReactWidget/widget/lib/**/*.js"])
-        .pipe(gulp.dest("release/MxReactWidget/widget/lib/"));
-    gulp.src(["MxReactWidget/widget/lib/**/*.css"])
-        .pipe(gulp.dest("release/MxReactWidget/widget/lib/"));
+    return merge2([
+        //all main widget file
+        gulp.src(["MxReactWidget/widget/template/*.html"])
+            .pipe(gulp.dest("release/MxReactWidget/widget/template/")),
+        gulp.src(["MxReactWidget/widget/ui/*.*"])
+            .pipe(gulp.dest("release/MxReactWidget/widget/ui/")),
+        //all config file
+        gulp.src(["./*.xml"])
+            .pipe(gulp.dest("release/")),
+        gulp.src(["MxReactWidget/*.xml"])
+            .pipe(gulp.dest("release/MxReactWidget/")),
+        gulp.src(["MxReactWidget/widget/lib/**/*.js"])
+            .pipe(gulp.dest("release/MxReactWidget/widget/lib/")),
+        gulp.src(["MxReactWidget/widget/lib/**/*.css"])
+            .pipe(gulp.dest("release/MxReactWidget/widget/lib/"))
+    ])
 });
 
 gulp.task("clean", function () {
-    gulp.src("./release/")
+    return gulp.src("./release/")
         .pipe(clean({ force: true }));
 });
 gulp.task("zip", function () {
-    gulp.src("./zip/**/*")
+    return gulp.src("./release/**/*")
         .pipe(zip("MxReactWidget.mpk"))
         .pipe(gulp.dest("./test/widgets/"))
 })
 gulp.task('webpack', () =>
-    gulp.src("./dist/MxReactWidget.js")
+    gulp.src("./release/MxReactWidget/widget/MxReactWidget.js")
         .pipe(webpack("./webpack.config.js"))
         .pipe(gulp.dest("./"))
 )
-gulp.task("taskList", ["compileTs", "otherFiles"]);
+gulp.task("taskList", sequence(["compileTs", "otherFiles"], "zip"));
 gulp.task("watch", function () {
     gulp.watch("./MxReactWidget/**/*", ["taskList"]);
 });

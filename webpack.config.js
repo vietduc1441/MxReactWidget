@@ -22,7 +22,7 @@ module.exports = {
     },
     module: {
         rules: [
-            { sideEffects: true },
+            // { sideEffects: true },
             { test: /\.(html|svg)$/i, use: { loader: 'html-loader' } }
         ]
     },
