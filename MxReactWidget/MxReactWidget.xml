@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<widget id="MxReactWidget.widget.MxReactWidget" needsEntityContext="false" xmlns="http://www.mendix.com/widget/1.0/">
+<widget id="com.mendix.widget.custom.MxReactWidget.MxReactWidget" needsEntityContext="false" 
+    xmlns="http://www.mendix.com/widget/1.0/">
     <name>MxReactWidget</name>
-    <description>MxReactWidget</description> 
+    <description>MxReactWidget</description>
     <icon />
     <properties>
         <property key="messageString" type="string" required="true" defaultValue="">
             <caption>Message</caption>
             <category>Appearance</category>
             <description>The message visible within the widget.</description>
-        </property> 
+        </property>
     </properties>
 </widget>

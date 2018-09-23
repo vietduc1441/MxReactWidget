@@ -17,20 +17,12 @@ gulp.task('compileTs', function () {
 
 gulp.task("otherFiles", function () {
     return merge2([
-        //all main widget file
-        gulp.src(["MxReactWidget/widget/template/*.html"])
-            .pipe(gulp.dest("release/MxReactWidget/widget/template/")),
         gulp.src(["MxReactWidget/widget/ui/*.*"])
-            .pipe(gulp.dest("release/MxReactWidget/widget/ui/")),
-        //all config file
+            .pipe(gulp.dest("./bundle/com/mendix/widget/custom/MxReactWidget/ui/")),
         gulp.src(["./*.xml"])
-            .pipe(gulp.dest("release/")),
+            .pipe(gulp.dest("bundle/")),
         gulp.src(["MxReactWidget/*.xml"])
-            .pipe(gulp.dest("release/MxReactWidget/")),
-        gulp.src(["MxReactWidget/widget/lib/**/*.js"])
-            .pipe(gulp.dest("release/MxReactWidget/widget/lib/")),
-        gulp.src(["MxReactWidget/widget/lib/**/*.css"])
-            .pipe(gulp.dest("release/MxReactWidget/widget/lib/"))
+            .pipe(gulp.dest("bundle/MxReactWidget/")),
     ])
 });
 
