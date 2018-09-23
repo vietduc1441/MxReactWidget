@@ -6,3 +6,5 @@ dist
 *.swp
 *.swo
 release
+test/deployment/
+test/javasource/

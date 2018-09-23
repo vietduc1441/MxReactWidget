@@ -39,16 +39,16 @@ gulp.task("clean", function () {
         .pipe(clean({ force: true }));
 });
 gulp.task("zip", function () {
-    return gulp.src("./release/**/*")
+    return gulp.src("./bundle/**/*")
         .pipe(zip("MxReactWidget.mpk"))
         .pipe(gulp.dest("./test/widgets/"))
 })
 gulp.task('webpack', () =>
     gulp.src("./release/MxReactWidget/widget/MxReactWidget.js")
-        .pipe(webpack("./webpack.config.js"))
-        .pipe(gulp.dest("./"))
+        .pipe(webpack(require("./webpack.config.js")))
+        .pipe(gulp.dest("./bundle"))
 )
-gulp.task("taskList", sequence(["compileTs", "otherFiles"], "zip"));
+gulp.task("taskList", sequence(["compileTs", "otherFiles"], "webpack", "zip"));
 gulp.task("watch", function () {
     gulp.watch("./MxReactWidget/**/*", ["taskList"]);
 });

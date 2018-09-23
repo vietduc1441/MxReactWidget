@@ -17,13 +17,12 @@ module.exports = {
     // mode: "production",
     mode: "development",
     output: {
-        filename: "./dist/zip/com/mendix/widget/custom/MxReactWidget/MxReactWidget.js",
+        filename: "./com/mendix/widget/custom/MxReactWidget/MxReactWidget.js",
         libraryTarget: "umd",
     },
     module: {
         rules: [
             // { sideEffects: true },
-            { test: /\.(html|svg)$/i, use: { loader: 'html-loader' } }
         ]
     },
     plugins: [
