@@ -1,5 +1,4 @@
 import * as React from "react";
-import { App } from "./App";
 /**
  * Built-in Properties of Mendix
  */
@@ -21,29 +20,35 @@ interface IMxReactWidgetProps extends IMendixDefaultProps {
 }
 /** Widget state, if changed, the widget will be re-rendered */
 interface IWidgetState {
-    messageString?: string;
+    currentTime?: string;
 }
 export default class MxReactWidget extends React.Component<IMxReactWidgetProps, IWidgetState> {
     constructor(props: IMxReactWidgetProps) {
         super(props);
         this.state = {
-            messageString: props.messageString
+            currentTime: props.messageString
         };
     }
     componentWillMount() {
         console.log('component will mount');
+        window.setInterval(() => {
+            this.setState({ currentTime: `Current Time: ${new Date()}` }); // Re-render every sec since we update the state
+        }, 1000)
     }
     componentWillReceiveProps(nextProps: IMxReactWidgetProps) {
-        this.setState({ messageString: nextProps.messageString })
     }
-
     render() {
-        console.log("render");
         return (
-            <App></App>
+            <div>
+                <div>Message from Modeller: {this.props.messageString}</div>
+                <div>Current time in State: {this.state.currentTime}</div>
+            </div >
         )
     }
     componentDidUpdate() {
         console.log("component did update");
+    }
+    componentWillUnmount() {
+        // unintialize
     }
 } 

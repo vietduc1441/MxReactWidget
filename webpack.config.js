@@ -20,6 +20,7 @@ module.exports = {
         filename: "./com/mendix/widget/custom/MxReactWidget/MxReactWidget.js",
         libraryTarget: "umd",
     },
+    cache: false,
     module: {
         rules: [
             // { sideEffects: true },
