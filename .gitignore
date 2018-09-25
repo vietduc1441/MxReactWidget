@@ -6,5 +6,8 @@ dist
 *.swp
 *.swo
 release
+bundle
 test/deployment/
 test/javasource/
+*.launch
+.classpath

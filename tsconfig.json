@@ -10,6 +10,9 @@
         "skipLibCheck": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
-        "allowUnreachableCode": false
-    }
+        "allowUnreachableCode": false,
+        "types": [
+            "mendix-client"
+        ],
+    },
 }
