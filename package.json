@@ -36,5 +36,10 @@
     "typescript": "^2.9.2",
     "webpack": "^4.17.2",
     "webpack-stream": "^5.1.1"
+  },
+  "dependencies": {
+    "mobx": "^5.1.2",
+    "mobx-react": "^5.2.8",
+    "mobx-react-devtools": "^6.0.3"
   }
 }

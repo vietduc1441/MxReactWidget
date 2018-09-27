@@ -8,7 +8,9 @@ module.exports = {
         /^(dijit)(.)*/i,
         /^(mxui)(.)*/i,
         "react",
-        "react-dom"
+        "react-dom",
+        // "mobx",
+        // "mobx-react"
     ],
     // optimization: {
     //     minimize: false
