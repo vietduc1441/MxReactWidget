@@ -9,6 +9,7 @@
         "jsx": "react",
         "skipLibCheck": true,
         "noImplicitReturns": true,
+        "sourceMap": true,
         "noUnusedLocals": true,
         "allowUnreachableCode": false,
         "types": [
