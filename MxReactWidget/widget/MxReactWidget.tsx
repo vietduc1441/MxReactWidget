@@ -1,4 +1,6 @@
 import * as React from "react";
+import { Circle } from "./Circle";
+import { Canvas } from "./Canvas";
 /**
  * Built-in Properties of Mendix
  */
@@ -16,32 +18,39 @@ interface IMendixDefaultProps {
  * Interface for variable sent from Modeller
  */
 interface IMxReactWidgetProps extends IMendixDefaultProps {
-    messageString?: string
+    radius: string;
+    xCoord: string;
+    yCoord: string;
+    color: string;
 }
 /** Widget state, if changed, the widget will be re-rendered */
 interface IWidgetState {
-    currentTime?: string;
 }
 export default class MxReactWidget extends React.Component<IMxReactWidgetProps, IWidgetState> {
     constructor(props: IMxReactWidgetProps) {
         super(props);
-        this.state = {
-            currentTime: props.messageString
-        };
     }
     componentWillMount() {
-        console.log('component will mount');
-        window.setInterval(() => {
-            this.setState({ currentTime: `Current Time: ${new Date()}` }); // Re-render every sec since we update the state
-        }, 1000)
+        console.log('Component will be mounted');
     }
     componentWillReceiveProps(nextProps: IMxReactWidgetProps) {
+        console.log("New context object applied")
     }
     render() {
+        let contextObj = this.props.mxObject;
         return (
             <div>
-                <div>Message from Modeller: {this.props.messageString}</div>
-                <div>Current time in State: {this.state.currentTime}</div>
+                <Canvas>
+                    {contextObj ?
+                        (<Circle xCoord={contextObj.get(this.props.xCoord) as number}
+                            yCoord={contextObj.get(this.props.yCoord) as number}
+                            color={contextObj.get(this.props.color) as string}
+                            radius={contextObj.get(this.props.radius) as number}
+                        />)
+                        :
+                        <div>No context object !</div>
+                    }
+                </Canvas>
             </div >
         )
     }
