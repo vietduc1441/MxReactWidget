@@ -1,6 +1,9 @@
+
 import { observable, configure } from "mobx";
-import { observer } from "mobx-react"
+import { observer } from "mobx-react";
 import * as React from "react";
+import { Circle } from "./Circle";
+import { Canvas } from "./Canvas";
 configure({ isolateGlobalState: true });
 /**
  * Built-in Properties of Mendix
@@ -19,32 +22,45 @@ interface IMendixDefaultProps {
  * Interface for variable sent from Modeller
  */
 interface IMxReactWidgetProps extends IMendixDefaultProps {
-    messageString?: string
+    /**TODO: fill in other wiget property */
+    radius: string;
+    xCoord: string;
+    yCoord: string;
+    color: string;
 }
-/** Widget state, if changed, the widget will be re-rendered */
+/**Widget data */
 interface IWidgetData {
-    currentTime?: string;
+    /** TODO: Fill in widget data interface*/
 }
-@observer class MxReactWidget extends React.Component<IMxReactWidgetProps, {}> {
+@observer export default class MxReactWidget extends React.Component<IMxReactWidgetProps, IWidgetState> {
     @observable data: IWidgetData = {
-        currentTime: `Current Time: ${new Date()}`
+        /** TODO: Fill in widget data */
     }
+
     constructor(props: IMxReactWidgetProps) {
         super(props);
     }
     componentWillMount() {
-        console.log('component will mount');
-        window.setInterval(() => {
-            this.data.currentTime = `Current Time: ${new Date()}`;
-        }, 1000)
+        console.log('Component will be mounted');
     }
     componentWillReceiveProps(nextProps: IMxReactWidgetProps) {
+        console.log("New context object applied")
     }
     render() {
+        let contextObj = this.props.mxObject;
         return (
             <div>
-                <div>Message from Modeller: {this.props.messageString}</div>
-                <div>Current time in State: {this.data.currentTime}</div>
+                <Canvas>
+                    {contextObj ?
+                        (<Circle xCoord={contextObj.get(this.props.xCoord) as number}
+                            yCoord={contextObj.get(this.props.yCoord) as number}
+                            color={contextObj.get(this.props.color) as string}
+                            radius={contextObj.get(this.props.radius) as number}
+                        />)
+                        :
+                        <div>No context object !</div>
+                    }
+                </Canvas>
             </div >
         )
     }
@@ -54,5 +70,4 @@ interface IWidgetData {
     componentWillUnmount() {
         // unintialize
     }
-}
-export default MxReactWidget; 
+} 
