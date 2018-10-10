@@ -12,8 +12,9 @@
         "sourceMap": true,
         "noUnusedLocals": true,
         "allowUnreachableCode": false,
+        "moduleResolution": "node",
         "types": [
-            "mendix-client"
+            "mendix-client",
         ],
     },
 }

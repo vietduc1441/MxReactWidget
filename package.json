@@ -37,5 +37,8 @@
     "typescript": "^2.9.2",
     "webpack": "^4.17.2",
     "webpack-stream": "^5.1.1"
+  },
+  "dependencies": {
+    "react-flip-move": "^3.0.2"
   }
 }
