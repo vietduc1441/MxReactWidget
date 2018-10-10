@@ -39,11 +39,13 @@ export default class MxReactWidget extends React.Component<IMxReactWidgetProps, 
     }
     componentWillReceiveProps(nextProps: IMxReactWidgetProps) {
         console.log("New context object applied")
+        let key = 0;
         window.setInterval(() => {
+            key++;
             this.setState(prevState => ({
-                data: [...prevState.data, { key: "a", text: (new Date()).toDateString() }]
+                data: [...prevState.data, { key: key + "", text: (new Date()).toDateString() }]
             }))
-        }, 1000)
+        }, 1000);
     }
 
     renderData() {
