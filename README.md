@@ -18,3 +18,9 @@ Then start to edit. If you want to create your own widget, change all occurances
 5. Zip files in release in to a mpk package
 
 You can run: `gulp zip` to pack all files in ./release/**/* into ./test/widgets/
+
+
+TODO:
+use webpack to build tsx
+fix css bundle
+add launch and task
